@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project name="Project" default="jar" basedir="../">
+
+    <property name="jar_dest" value="build/bin/program.jar"/>
+
+    <target name="clear">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile" depends="clear">
+        <mkdir dir="build"/>
+        <mkdir dir="build/classes"/>
+        <mkdir dir="build/bin"/>
+
+        <javac destdir="build/classes">
+            <src path="src"/>
+        </javac>
+    </target>
+
+    <target name="jar" depends="compile">
+        <echo>Ant!!</echo>
+        <jar destfile="${jar_dest}">
+            <fileset dir="build/classes">
+                <include name="**/*.class"/>
+                <exclude name="a/*.class"/>
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="com.sabahtalateh.Main"/>
+            </manifest>
+        </jar>
+    </target>
+
+</project>
